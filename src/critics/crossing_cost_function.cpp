@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/crossing_cost_function.hpp"
+#include "sfm_nmpc/critics/crossing_cost_function.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 CrossingCost::CrossingCost(double weight, double bearing_weight,
@@ -39,4 +39,4 @@ CrossingCost::CrossingCost(double weight, double bearing_weight,
   safe_distance_squared_ = 16.0;  // 6 m — react early enough to steer behind
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

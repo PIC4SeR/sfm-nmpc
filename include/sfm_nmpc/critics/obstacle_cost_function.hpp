@@ -21,7 +21,7 @@
 #include "geometry_msgs/msg/pose.hpp"
 #include "glog/logging.h"
 #include "nav2_costmap_2d/costmap_2d.hpp"
-#include "mpc_sfm_motion_model/update_state.hpp"
+#include "sfm_nmpc/update_state.hpp"
 
 /**
  * @brief Functor for computing the obstacle cost residual for a given robot state.
@@ -54,7 +54,7 @@
  *
  * Usage Example:
  * @code
- *   mpc_sfm_motion_model::ObstacleCost cost_function(
+ *   sfm_nmpc::ObstacleCost cost_function(
  *       weight, costmap, costmap_interpolator, robot_init, current_position,
  *       time_step, control_horizon, block_length);
  *
@@ -63,7 +63,7 @@
  *   cost_function(parameters, &residual);
  * @endcode
  */
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class ObstacleCost
@@ -177,6 +177,6 @@ public:
   std::shared_ptr<ceres::BiCubicInterpolator<ceres::Grid2D<u_char>>> costmap_interpolator_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

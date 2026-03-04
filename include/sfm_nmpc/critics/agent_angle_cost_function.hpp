@@ -15,13 +15,13 @@
 #ifndef MPC_SFM_MOTION_MODEL__AGENT_ANGLE_COST_FUNCTION_HPP_
 #define MPC_SFM_MOTION_MODEL__AGENT_ANGLE_COST_FUNCTION_HPP_
 
-#include <mpc_sfm_motion_model/update_state.hpp>
+#include <sfm_nmpc/update_state.hpp>
 
 #include "Eigen/Core"
 #include "ceres/ceres.h"
 #include "geometry_msgs/msg/pose.hpp"
 #include "glog/logging.h"
-#include "mpc_sfm_motion_model/tools/type_definitions.hpp"
+#include "sfm_nmpc/tools/type_definitions.hpp"
 
 /**
  * @file agent_angle_cost_function.hpp
@@ -44,7 +44,7 @@
  * @license Apache License, Version 2.0
  */
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class AgentAngleCost
@@ -207,6 +207,6 @@ private:
   double safe_distance_squared_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

@@ -31,7 +31,7 @@ controller_server:
       max_angular_accel: 20.0
       simulate_ahead_time: 0.3
       rotate_to_goal_heading: false
-      primary_controller: mpc_sfm_motion_model::MPCEnlargedState
+      primary_controller: sfm_nmpc::MPCEnlargedState
       trajectorizer:
         desired_linear_vel: 0.6
         lookahead_dist: 1.0

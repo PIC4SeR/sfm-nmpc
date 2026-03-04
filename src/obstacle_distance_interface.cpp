@@ -1,6 +1,6 @@
-#include "mpc_sfm_motion_model/obstacle_distance_interface.hpp"
+#include "sfm_nmpc/obstacle_distance_interface.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 // TODO:
@@ -153,4 +153,4 @@ bool ObstacleDistInterface::transformPose(const std::string frame, const geometr
   return false;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

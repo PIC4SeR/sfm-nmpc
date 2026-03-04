@@ -7,7 +7,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class PeopleInterface
@@ -25,6 +25,6 @@ private:
   people_msgs::msg::People people_;
   std::mutex mutex_;
 };
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

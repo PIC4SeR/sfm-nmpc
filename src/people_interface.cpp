@@ -1,6 +1,6 @@
-#include "mpc_sfm_motion_model/people_interface.hpp"
+#include "sfm_nmpc/people_interface.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 PeopleInterface::PeopleInterface(rclcpp_lifecycle::LifecycleNode::WeakPtr parent)
@@ -28,4 +28,4 @@ people_msgs::msg::People PeopleInterface::getPeople()
   return p;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

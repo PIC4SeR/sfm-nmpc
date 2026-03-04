@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>mpc_sfm_motion_model</name>
+  <name>sfm_nmpc</name>
   <version>0.4.7</version>
   <description>Social MPC Controller</description>
   <author email="noeperez@upo.es">Noé Pérez</author>
@@ -34,7 +34,7 @@
 
   <export>
     <build_type>ament_cmake</build_type>
-    <nav2_core plugin="${prefix}/mpc_sfm_motion_model.xml" />
+    <nav2_core plugin="${prefix}/sfm_nmpc.xml" />
   </export>
 
 </package>

@@ -11,9 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-#include "mpc_sfm_motion_model/critics/goal_align_cost_function.hpp"
+#include "sfm_nmpc/critics/goal_align_cost_function.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 GoalAlignCost::GoalAlignCost(
@@ -30,4 +30,4 @@ GoalAlignCost::GoalAlignCost(
 {
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

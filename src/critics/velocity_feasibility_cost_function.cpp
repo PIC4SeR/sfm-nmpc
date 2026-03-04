@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/velocity_feasibility_cost_function.hpp"
+#include "sfm_nmpc/critics/velocity_feasibility_cost_function.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 VelocityFeasibilityCost::VelocityFeasibilityCost(
@@ -25,4 +25,4 @@ VelocityFeasibilityCost::VelocityFeasibilityCost(
   current_position_ = current_position;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

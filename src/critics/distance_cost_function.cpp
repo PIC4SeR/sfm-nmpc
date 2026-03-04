@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/distance_cost_function.hpp"
-namespace mpc_sfm_motion_model
+#include "sfm_nmpc/critics/distance_cost_function.hpp"
+namespace sfm_nmpc
 {
 
 DistanceCost::DistanceCost(
@@ -29,4 +29,4 @@ DistanceCost::DistanceCost(
   control_horizon_ = control_horizon;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

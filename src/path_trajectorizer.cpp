@@ -20,7 +20,7 @@
 #include <utility>
 #include <vector>
 
-#include "mpc_sfm_motion_model/path_trajectorizer.hpp"
+#include "sfm_nmpc/path_trajectorizer.hpp"
 #include "nav2_core/goal_checker.hpp"
 #include "nav2_util/geometry_utils.hpp"
 #include "nav2_util/node_utils.hpp"
@@ -31,7 +31,7 @@
 
 using nav2_util::declare_parameter_if_not_declared;
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 PathTrajectorizer::PathTrajectorizer()
@@ -437,4 +437,4 @@ bool PathTrajectorizer::trajectorize(nav_msgs::msg::Path& path,
   return true;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

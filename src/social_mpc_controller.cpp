@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/social_mpc_controller.hpp"
+#include "sfm_nmpc/social_mpc_controller.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -35,7 +35,7 @@ using std::min;
 using namespace nav2_costmap_2d;  // NOLINT
 
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 void MPCSFMMotionModel::configure(const rclcpp_lifecycle::LifecycleNode::WeakPtr& parent, std::string name,
@@ -92,7 +92,7 @@ void MPCSFMMotionModel::cleanup()
 {
   RCLCPP_INFO(logger_,
               "Cleaning up controller: %s of type"
-              "mpc_sfm_motion_model::MPCSFMMotionModel",
+              "sfm_nmpc::MPCSFMMotionModel",
               plugin_name_.c_str());
   local_path_pub_.reset();
   people_traj_pub_.reset();
@@ -102,7 +102,7 @@ void MPCSFMMotionModel::activate()
 {
   RCLCPP_INFO(logger_,
               "Activating controller: %s of type "
-              "mpc_sfm_motion_model::MPCSFMMotionModel",
+              "sfm_nmpc::MPCSFMMotionModel",
               plugin_name_.c_str());
   trajectorizer_->activate();
   local_path_pub_->on_activate();
@@ -113,7 +113,7 @@ void MPCSFMMotionModel::deactivate()
 {
   RCLCPP_INFO(logger_,
               "Deactivating controller: %s of type "
-              "mpc_sfm_motion_model::MPCSFMMotionModel",
+              "sfm_nmpc::MPCSFMMotionModel",
               plugin_name_.c_str());
   trajectorizer_->deactivate();
   local_path_pub_->on_deactivate();
@@ -334,7 +334,7 @@ bool MPCSFMMotionModel::transformPoint(const std::string frame, const geometry_m
   return false;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 // Register this controller as a nav2_core plugin
-PLUGINLIB_EXPORT_CLASS(mpc_sfm_motion_model::MPCSFMMotionModel, nav2_core::Controller)
+PLUGINLIB_EXPORT_CLASS(sfm_nmpc::MPCSFMMotionModel, nav2_core::Controller)

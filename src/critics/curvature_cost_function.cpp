@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/curvature_cost_function.hpp"
+#include "sfm_nmpc/critics/curvature_cost_function.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 CurvatureCost::CurvatureCost(double weight, double max_angle) : weight_(weight), max_angle_(max_angle)
 {
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

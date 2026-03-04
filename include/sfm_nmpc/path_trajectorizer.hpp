@@ -24,8 +24,8 @@
 #include "geometry_msgs/msg/twist_stamped.hpp"
 #include "nav2_util/geometry_utils.hpp"
 #include "nav2_util/node_utils.hpp"
-#include "mpc_sfm_motion_model/tools/motion_model.hpp"
-#include "mpc_sfm_motion_model/tools/regulated_pure_pursuit.hpp"
+#include "sfm_nmpc/tools/motion_model.hpp"
+#include "sfm_nmpc/tools/regulated_pure_pursuit.hpp"
 #include "nav_msgs/msg/path.h"
 #include "nav_msgs/msg/path.hpp"
 #include "visualization_msgs/msg/marker_array.hpp"
@@ -40,7 +40,7 @@ namespace nav2_core
 class GoalChecker;
 }
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 /**
@@ -166,6 +166,6 @@ protected:
   RegulatedPurePursuit pure_pursuit_{};
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif  // NAV2_CONSTRAINED_SMOOTHER__CONSTRAINED_SMOOTHER_HPP_

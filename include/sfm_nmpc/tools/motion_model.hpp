@@ -24,7 +24,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "tf2/utils.h"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 /**
@@ -190,6 +190,6 @@ public:
 
 using PlanarMotionModel = HolonomicMotionModel;  // Backward compatibility alias
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif  // MPC_SFM_MOTION_MODEL__TOOLS__MOTION_MODEL_HPP_

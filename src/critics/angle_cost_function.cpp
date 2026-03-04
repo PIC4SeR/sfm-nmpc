@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/angle_cost_function.hpp"
+#include "sfm_nmpc/critics/angle_cost_function.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 AngleCost::AngleCost(
@@ -31,4 +31,4 @@ AngleCost::AngleCost(
 {
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

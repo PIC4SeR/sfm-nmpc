@@ -11,10 +11,10 @@
 #include "tf2/LinearMath/Quaternion.h"
 #include "tf2/utils.h"
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
-#include "mpc_sfm_motion_model/tools/type_definitions.hpp"
+#include "sfm_nmpc/tools/type_definitions.hpp"
 
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 /**
@@ -231,7 +231,7 @@ std::tuple<T, T, T, Eigen::Matrix<T,6,3>> computeSFMState(const geometry_msgs::m
   }
 
   return std::make_tuple(x, y, theta, agents_updating);
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 
 

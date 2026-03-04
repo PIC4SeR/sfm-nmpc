@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/obstacle_cost_function.hpp"
-namespace mpc_sfm_motion_model
+#include "sfm_nmpc/critics/obstacle_cost_function.hpp"
+namespace sfm_nmpc
 {
 
 ObstacleCost::ObstacleCost(
@@ -33,4 +33,4 @@ ObstacleCost::ObstacleCost(
   block_length_ = block_length;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

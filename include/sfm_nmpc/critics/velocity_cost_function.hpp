@@ -47,7 +47,7 @@
  *
  * @return true Always returns true to indicate that the cost computation was successful.
  */
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class VelocityCost
@@ -106,6 +106,6 @@ private:
   unsigned int block_length_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

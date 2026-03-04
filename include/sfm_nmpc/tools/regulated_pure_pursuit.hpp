@@ -14,7 +14,7 @@
 
 #include "tf2/utils.h"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class RegulatedPurePursuit
@@ -368,4 +368,4 @@ private:
   Params params_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

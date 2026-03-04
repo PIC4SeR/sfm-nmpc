@@ -22,9 +22,9 @@
 #include "geometry_msgs/msg/pose.hpp"
 #include "glog/logging.h"
 
-#include "mpc_sfm_motion_model/update_state.hpp"
+#include "sfm_nmpc/update_state.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 /**
@@ -114,6 +114,6 @@ private:
   unsigned int block_length_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif  // MPC_SFM_MOTION_MODEL__GOAL_PROXIMITY_COST_FUNCTION_HPP_

@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/proxemics_cost_function.hpp"
+#include "sfm_nmpc/critics/proxemics_cost_function.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 ProxemicsCost::ProxemicsCost(double weight, const AgentsStates& agents_init, const geometry_msgs::msg::Pose& robot_init,
@@ -38,4 +38,4 @@ ProxemicsCost::ProxemicsCost(double weight, const AgentsStates& agents_init, con
   d0_ = 0.5;     // Minimum distance for proxemics cost
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

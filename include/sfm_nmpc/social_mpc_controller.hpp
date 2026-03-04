@@ -22,10 +22,10 @@
 
 #include "geometry_msgs/msg/pose2_d.hpp"
 #include "nav2_core/controller.hpp"
-#include "mpc_sfm_motion_model/obstacle_distance_interface.hpp"
-#include "mpc_sfm_motion_model/optimizer.hpp"
-#include "mpc_sfm_motion_model/path_trajectorizer.hpp"
-#include "mpc_sfm_motion_model/people_interface.hpp"
+#include "sfm_nmpc/obstacle_distance_interface.hpp"
+#include "sfm_nmpc/optimizer.hpp"
+#include "sfm_nmpc/path_trajectorizer.hpp"
+#include "sfm_nmpc/people_interface.hpp"
 #include "nav2_util/odometry_utils.hpp"
 #include "obstacle_distance_msgs/msg/obstacle_distance.hpp"
 #include "people_msgs/msg/people.hpp"
@@ -35,14 +35,14 @@
 #include "visualization_msgs/msg/marker_array.hpp"
 #include "nav2_util/geometry_utils.hpp"
 #include "nav2_util/robot_utils.hpp"
-#include "mpc_sfm_motion_model/tools/path_handler.hpp"
-#include "mpc_sfm_motion_model/tools/type_definitions.hpp"
+#include "sfm_nmpc/tools/path_handler.hpp"
+#include "sfm_nmpc/tools/type_definitions.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 /**
- * @class mpc_sfm_motion_model::MPCSFMMotionModel
+ * @class sfm_nmpc::MPCSFMMotionModel
  * @brief social mpc controller plugin
  */
 class MPCSFMMotionModel : public nav2_core::Controller
@@ -50,13 +50,13 @@ class MPCSFMMotionModel : public nav2_core::Controller
 public:
   /**
    * @brief Constructor for
-   * mpc_sfm_motion_model::MPCSFMMotionModel
+   * sfm_nmpc::MPCSFMMotionModel
    */
   MPCSFMMotionModel() = default;
 
   /**
    * @brief Destrructor for
-   * mpc_sfm_motion_model::MPCSFMMotionModel
+   * sfm_nmpc::MPCSFMMotionModel
    */
   ~MPCSFMMotionModel() override = default;
 
@@ -170,6 +170,6 @@ protected:
   std::unique_ptr<mpc::PathHandler> path_handler_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif  // MPC_SFM_MOTION_MODEL__MPC_CONTROLLER_HPP_

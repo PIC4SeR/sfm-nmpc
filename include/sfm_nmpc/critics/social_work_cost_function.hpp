@@ -20,10 +20,10 @@
 #include "geometry_msgs/msg/pose.hpp"
 #include "geometry_msgs/msg/twist.hpp"
 #include "glog/logging.h"
-#include "mpc_sfm_motion_model/update_state.hpp"
-#include "mpc_sfm_motion_model/tools/type_definitions.hpp"
+#include "sfm_nmpc/update_state.hpp"
+#include "sfm_nmpc/tools/type_definitions.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 template <typename T>
@@ -249,6 +249,6 @@ private:
   double sfm_forceFactorSocial_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

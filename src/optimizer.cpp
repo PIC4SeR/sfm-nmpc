@@ -1,4 +1,4 @@
-#include "mpc_sfm_motion_model/optimizer.hpp"
+#include "sfm_nmpc/optimizer.hpp"
 
 #include <algorithm>
 #include <limits>
@@ -7,7 +7,7 @@
 
 #include "tf2/utils.h"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 /**
@@ -711,4 +711,4 @@ Eigen::Vector2d Optimizer::computeObstacle(const Eigen::Vector2d& apos,
   return diff;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

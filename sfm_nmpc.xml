@@ -1,0 +1,10 @@
+<class_libraries>
+    <library path="sfm_nmpc">
+        <class type="sfm_nmpc::MPCSFMMotionModel" base_class_type="nav2_core::Controller">
+            <description>
+                sfm_nmpc
+            </description>
+        </class>
+    </library>
+</class_libraries>
+

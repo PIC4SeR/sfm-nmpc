@@ -19,7 +19,7 @@
 #include "ceres/ceres.h"
 #include "glog/logging.h"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class CurvatureCost
@@ -91,6 +91,6 @@ private:
   double max_angle_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/velocity_cost_function.hpp"
-namespace mpc_sfm_motion_model
+#include "sfm_nmpc/critics/velocity_cost_function.hpp"
+namespace sfm_nmpc
 {
 
 VelocityCost::VelocityCost(
@@ -27,4 +27,4 @@ VelocityCost::VelocityCost(
 {
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

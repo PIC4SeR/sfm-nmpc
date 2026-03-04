@@ -36,26 +36,26 @@
 #include "rclcpp_lifecycle/lifecycle_node.hpp"
 
 // cost functions
-#include "mpc_sfm_motion_model/critics/agent_angle_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/crossing_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/angle_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/curvature_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/distance_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/goal_align_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/goal_proximity_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/obstacle_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/social_work_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/velocity_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/velocity_feasibility_cost_function.hpp"
-#include "mpc_sfm_motion_model/critics/proxemics_cost_function.hpp"
+#include "sfm_nmpc/critics/agent_angle_cost_function.hpp"
+#include "sfm_nmpc/critics/crossing_cost_function.hpp"
+#include "sfm_nmpc/critics/angle_cost_function.hpp"
+#include "sfm_nmpc/critics/curvature_cost_function.hpp"
+#include "sfm_nmpc/critics/distance_cost_function.hpp"
+#include "sfm_nmpc/critics/goal_align_cost_function.hpp"
+#include "sfm_nmpc/critics/goal_proximity_cost_function.hpp"
+#include "sfm_nmpc/critics/obstacle_cost_function.hpp"
+#include "sfm_nmpc/critics/social_work_cost_function.hpp"
+#include "sfm_nmpc/critics/velocity_cost_function.hpp"
+#include "sfm_nmpc/critics/velocity_feasibility_cost_function.hpp"
+#include "sfm_nmpc/critics/proxemics_cost_function.hpp"
 
-#include "mpc_sfm_motion_model/sfm.hpp"
-#include "mpc_sfm_motion_model/trajectory_memory.hpp"
+#include "sfm_nmpc/sfm.hpp"
+#include "sfm_nmpc/trajectory_memory.hpp"
 #include "obstacle_distance_msgs/msg/obstacle_distance.hpp"
 #include "people_msgs/msg/people.hpp"
-#include "mpc_sfm_motion_model/tools/type_definitions.hpp"
+#include "sfm_nmpc/tools/type_definitions.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 struct OptimizerParams
@@ -164,7 +164,7 @@ public:
 
   /**
    * @brief Destrructor for
-   * mpc_sfm_motion_model::MPCSFMMotionModel
+   * sfm_nmpc::MPCSFMMotionModel
    */
   ~Optimizer();
 
@@ -273,6 +273,6 @@ private:
   rclcpp::Time path_time_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif  // MPC_SFM_MOTION_MODEL__OPTIMIZER_HPP_

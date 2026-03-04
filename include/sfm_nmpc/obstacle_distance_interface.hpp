@@ -11,7 +11,7 @@
 #include "tf2_ros/buffer.h"
 #include "nav2_util/robot_utils.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class ObstacleDistInterface
@@ -129,6 +129,6 @@ private:
 
   rclcpp_lifecycle::LifecycleNode::WeakPtr parent;
 };
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

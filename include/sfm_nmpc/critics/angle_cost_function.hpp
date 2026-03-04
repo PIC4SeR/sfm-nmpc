@@ -15,7 +15,7 @@
 #ifndef MPC_SFM_MOTION_MODEL__ANGLE_COST_FUNCTION_HPP_
 #define MPC_SFM_MOTION_MODEL__ANGLE_COST_FUNCTION_HPP_
 
-#include <mpc_sfm_motion_model/update_state.hpp>
+#include <sfm_nmpc/update_state.hpp>
 
 #include "Eigen/Core"
 #include "ceres/ceres.h"
@@ -44,7 +44,7 @@
  *
  * @return Always returns true to indicate a successful evaluation.
  */
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class AngleCost
@@ -117,6 +117,6 @@ private:
   unsigned int block_length_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

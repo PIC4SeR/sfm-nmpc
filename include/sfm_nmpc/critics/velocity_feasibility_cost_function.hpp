@@ -29,7 +29,7 @@
  */
 
 /// @brief Namespace for the social MPC controller.
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 /**
@@ -104,6 +104,6 @@ private:
   unsigned int current_position_;  ///< The current position index within the control horizon.
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

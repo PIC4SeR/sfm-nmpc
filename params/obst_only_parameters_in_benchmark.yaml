@@ -102,7 +102,7 @@ controller_server:
       stateful: True
 
     FollowPath:
-      plugin: "mpc_sfm_motion_model::MPCSFMMotionModel"
+      plugin: "sfm_nmpc::MPCSFMMotionModel"
       trajectorizer:
         desired_linear_vel: 0.6
         lookahead_dist: 2.0

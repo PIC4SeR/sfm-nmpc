@@ -19,7 +19,7 @@
 #include "ceres/ceres.h"
 #include "geometry_msgs/msg/pose.hpp"
 #include "glog/logging.h"
-#include "mpc_sfm_motion_model/update_state.hpp"
+#include "sfm_nmpc/update_state.hpp"
 /**
  * @file distance_cost_function.hpp
  * @brief Defines the DistanceCostFunction for social MPC control.
@@ -51,7 +51,7 @@
  * @author
  * @date
  */
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 class DistanceCost
@@ -141,6 +141,6 @@ private:
   geometry_msgs::msg::Pose robot_init_;
 };
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 
 #endif

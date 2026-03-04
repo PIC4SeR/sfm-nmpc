@@ -22,7 +22,7 @@
 #include "nav2_util/node_utils.hpp"
 #include "nav2_util/geometry_utils.hpp"
 #include "nav_2d_utils/tf_help.hpp"
-#include "mpc_sfm_motion_model/tools/path_handler.hpp"
+#include "sfm_nmpc/tools/path_handler.hpp"
 
 #include "nav2_core/exceptions.hpp"
 

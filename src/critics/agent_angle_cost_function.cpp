@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mpc_sfm_motion_model/critics/agent_angle_cost_function.hpp"
+#include "sfm_nmpc/critics/agent_angle_cost_function.hpp"
 
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 
 AgentAngleCost::AgentAngleCost(double weight, double velocity_alignment_weight, const AgentsStates& agents_init,
@@ -37,4 +37,4 @@ AgentAngleCost::AgentAngleCost(double weight, double velocity_alignment_weight, 
   safe_distance_squared_ = 4.0;
 }
 
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc

@@ -18,7 +18,7 @@
 #include "ceres/cost_function.h"
 #include "ceres/cubic_interpolation.h"
 #include "geometry_msgs/msg/twist_stamped.hpp"
-#include "mpc_sfm_motion_model/sfm.hpp"
+#include "sfm_nmpc/sfm.hpp"
 #include "nav2_util/node_utils.hpp"
 #include "nav_msgs/msg/path.hpp"
 #include "obstacle_distance_msgs/msg/obstacle_distance.hpp"
@@ -27,7 +27,7 @@
 
 // This singleton class is used to store the previous trajectory and commands, in order to give a soft start to the
 // optimizer Still needs to be tested, but it should work
-namespace mpc_sfm_motion_model
+namespace sfm_nmpc
 {
 class TrajectoryMemory
 {
@@ -47,5 +47,5 @@ private:
   {
   }  // Private constructor
 };
-}  // namespace mpc_sfm_motion_model
+}  // namespace sfm_nmpc
 #endif  // MPC_SFM_MOTION_MODEL__TRAJECTORY_MEMORY_HPP_
