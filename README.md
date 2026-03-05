@@ -6,102 +6,126 @@
 <h1 align="center">SFM-NMPC: Social-Force-Aware Nav2 Controller</h1>
 
 <p align="center">
-  <img src="docs/images/sfm_nmpc_open_crowded_scenario.gif" alt="SFM-NMPC open crowded scenario" width="650" />
+  <img src="docs/images/sfm_nmpc_open_crowded_scenario.gif" alt="SFM-NMPC open crowded scenario" width="680" />
 </p>
 
-`sfm_nmpc` brings a nonlinear model predictive controller to Nav2 that explicitly reasons about human crowds via the Social Force Model (SFM). The plugin optimizes a block of linear/angular velocities with Ceres, fusing classical path-following critics with social-aware penalties so the robot can plan short-horizon motions that obey proxemic conventions while staying close to the global plan.
+`sfm_nmpc` is a Nav2 controller plugin that optimizes short-horizon velocity commands with Ceres. It combines classical trajectory-tracking critics with Social Force Model (SFM) social costs, so the robot can plan toward goals while respecting nearby people, proxemics, and social flow.
 
-## Key Features
+## At a glance
 
-- **Ceres-based NMPC** with configurable control horizon and block discretization (`optimizer` section).
-- **11 custom critics** covering path tracking, obstacle avoidance, social force minimization, proxemics, and velocity smoothness. Mathematical details live in [`docs/mpc_critics_methodology.md`](../../docs/mpc_critics_methodology.md).
-- **Social Force Model integration** to co-predict pedestrian trajectories and penalize socially undesirable interactions.
-- **Nav2 drop-in**: exported as `sfm_nmpc::MPCSFMMotionModel`, so it plugs into `controller_server` alongside other controllers.
-- **Ready-to-use parameter presets** (`params/params.yaml`, `params/obst_only_parameters_in_benchmark.yaml`, `params/soc_work_obst_parameters_in_benchmark.yaml`).
-- **Documentation assets** (Gazebo snapshots, report configs) shared with the larger HuNavSim workspace for reproducible benchmarks.
+![NMPC Pipeline](docs/images/NMPC.jpg)
 
-## Package Layout
+The controller uses:
 
-| Path | Notes |
+- a unicycle rollout model for robot predictions over the horizon,
+- a critic stack assembled in `optimizer` that forms a single weighted least-squares objective,
+- SFM-based future agent states that are co-predicted and coupled into social penalties each cycle.
+
+Social interaction terms and force components are visualized below.
+
+![Social Interaction Vectors](docs/images/social_interaction_vectors.png)
+
+## Documentation-driven implementation details
+
+The package behavior is documented in `src/sfm-nmpc/docs`:
+
+- [Cost function formulation](docs/mpc_critics_methodology.md) including horizon setup, state rollout, and critic math.
+- [Critic catalog and usage notes](docs/critics.md) for all 11 critics, with YAML examples.
+
+## What the controller does
+
+- Solves a nonlinear least-squares optimization each control cycle (`optimizer` block in params).
+- Optimizes angular and linear velocity blocks with configurable horizon/block settings.
+- Combines 11 modular critics: path tracking, goal behavior, obstacle safety, motion smoothness, and social interaction.
+- Exposes the Nav2 plugin class `sfm_nmpc::MPCSFMMotionModel`.
+
+### Current critics
+
+- Path tracking: `DistanceCost`, `AngleCost`
+- Goal behavior: `GoalAlignCost`, `GoalProximityCost`
+- Safety: `ObstacleCost`
+- Smoothness: `VelocityCost`, `VelocityFeasibilityCost`
+- Social: `SocialWorkCost`, `ProxemicsCost`, `AgentAngleCost`, `CrossingCost`
+
+## Package structure
+
+| Path | Purpose |
 | --- | --- |
-| `CMakeLists.txt` | Builds `sfm_nmpc` and `sfm_nmpc_critics` shared libraries, exporting the plugin description `sfm_nmpc.xml`. |
-| `include/sfm_nmpc/` | Headers for critics, optimizer, trajectorizer, interfaces, and helper utilities. |
-| `src/` | Implementations for each critic, the optimizer, interfaces, and the Nav2 plugin entry point. |
-| `params/` | Controller parameter presets used in the paper benchmarks. |
-| `critics.md` | High-level overview of every critic, weights, and example YAML usage. |
-| `EXAMPLE.md` | Reference README formatting template (the file requested by the template task). |
+| `CMakeLists.txt` | Builds `sfm_nmpc` and `sfm_nmpc_critics` shared libraries and exports `sfm_nmpc.xml`. |
+| `include/sfm_nmpc/` | Public headers for plugin, optimizer, trajectorizer, critics, and helper interfaces. |
+| `src/` | Implementation of all core components (plugin, optimizer, cost functions, interfaces). |
+| `params/` | Benchmark and baseline YAML presets. |
+| `docs/` | Full math notes, critic explanations, and configuration guidance. |
 
-## Installation
+## Build and install
 
-`sfm_nmpc` depends on ROS 2 Humble, Nav2, and the `lightsfm` library (installed by the workspace dev container). To build the package inside the workspace:
+From the workspace root:
 
 ```bash
 cd /workspaces/hunavsim_devcontainer
+rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select sfm_nmpc
 source install/setup.bash
 ```
-Run `rosdep install --from-paths src --ignore-src -r -y` to pull any missing dependencies.
 
-## Usage
+## Use in Nav2
 
-1. **Include the plugin in Nav2 bringup** by referencing the exported class in your controller configuration:
+1. Configure the controller plugin:
 
-   ```yaml
-   controller_server:
-     ros__parameters:
-       use_sim_time: True
-       controller_frequency: 20.0
-       controller_plugins: ["FollowPath"]
-       FollowPath:
-         plugin: "sfm_nmpc::MPCSFMMotionModel"
-         trajectorizer:
-           desired_linear_vel: 0.6
-           lookahead_dist: 1.0
-           max_angular_vel: 1.4
-           time_step: 0.05
-           max_time: 1.5
-         optimizer:
-           control_horizon: 18
-           parameter_block_length: 6
-           linear_solver_type: "DENSE_SCHUR"
-           weights:
-             distance_weight: 20.0
-             social_weight: 400.0
-             proxemics_weight: 80.0
-             obstacle_weight: 0.13
-             velocity_feasibility_weight: 5.0
-   ```
+```yaml
+controller_server:
+  ros__parameters:
+    use_sim_time: True
+    controller_frequency: 20.0
+    controller_plugins: ["FollowPath"]
+    FollowPath:
+      plugin: "sfm_nmpc::MPCSFMMotionModel"
+      trajectorizer:
+        desired_linear_vel: 0.6
+        lookahead_dist: 1.0
+        max_angular_vel: 1.4
+        time_step: 0.05
+        max_time: 1.5
+      optimizer:
+        linear_solver_type: "DENSE_SCHUR"
+        control_horizon: 18
+        parameter_block_length: 6
+        weights:
+          distance_weight: 20.0
+          angle_weight: 250.0
+          obstacle_weight: 0.13
+          social_weight: 720.0
+          proxemics_weight: 40.0
+          agent_angle_weight: 40.0
+          velocity_feasibility_weight: 5.0
+```
 
-2. **Launch Nav2** with the above params. Example:
+2. Launch Nav2:
 
-   ```bash
-   ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True \
-       params:=$PWD/src/sfm-nmpc/params/params.yaml
-   ```
+```bash
+ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True \
+  params:=$PWD/src/sfm-nmpc/params/params.yaml
+```
 
-3. **Tune critics** using the YAML weights or by editing the defaults in `optimizer.hpp`. `critics.md` explains the influence of each critic and shows a `FollowPath` configuration snippet.
+3. Tune behavior by editing critic weights and optimizer limits in the parameter files.
 
-4. **Benchmark** the controller using the HuNavSim Gazebo harness in `src/gazebo_test/` (see the root workspace README for instructions). Metrics and plots can be generated with `src/social_evaluation_graphs`.
+## Preset parameters
 
-## Parameter Presets
+- `params/params.yaml` – default social-aware navigation stack.
+- `params/obst_only_parameters_in_benchmark.yaml` – obstacle-only ablation.
+- `params/soc_work_obst_parameters_in_benchmark.yaml` – social-work-emphasized crowd variant.
 
-- `params/params.yaml` – General navigation stack with the SFM critics enabled alongside standard path/velocity critics.
-- `params/obst_only_parameters_in_benchmark.yaml` – Ablation that disables the social costs to highlight obstacle-only behavior.
-- `params/soc_work_obst_parameters_in_benchmark.yaml` – Variant emphasizing social work penalties for crowd-heavy scenes.
+## Development notes
 
-Each preset configures both the trajectorizer (lookahead, time step) and optimizer (solver tolerances, weights). Use them as starting points for your robots or experiments.
-
-## Development Notes
-
-- **Build type**: defaults to `Release` and forces `-fPIC` to satisfy pluginlib.
-- **Testing**: enable `BUILD_TESTING` and add gtests under `test/` to integrate with Nav2’s CI configuration. Currently the package relies on simulation benchmarks for validation.
-- **Formatting**: adhere to Nav2 coding conventions (ament linters are listed in `package.xml`).
+- **Build profile**: defaults to `Release` and keeps `-fPIC` enabled for plugin compatibility.
+- **Testing**: CI path is to enable `BUILD_TESTING` and add `test/` gtests; current upstream validation is simulation-benchmark based.
+- **Formatting**: Nav2/ament lint configuration is declared in `package.xml`.
 
 ## Citation
 
-If you build upon this controller, please cite the sfm-nmpc and any related publications describing SFM-NMPC :
+If you build on this controller, please cite this repository and any related publications:
 
-```
+```bibtex
 @misc{sfm_nmpc_controller,
   title        = {SFM-NMPC: Social-Force-Aware Nav2 Controller},
   year         = {2026},
@@ -109,4 +133,4 @@ If you build upon this controller, please cite the sfm-nmpc and any related publ
 }
 ```
 
-This package is distributed under Apache-2.0; see `package.xml` for the full license header. Individual dependencies retain their respective licenses.
+This package is distributed under Apache-2.0 (`package.xml`). Individual dependencies retain their own licenses.
