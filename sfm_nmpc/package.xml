@@ -10,7 +10,7 @@
   <author email="stefano.trepella@polito.it">Stefano Trepella</author>
   <author email="mauro.martini@polito.it">Mauro Martini</author>
   <maintainer email="stefano.trepella@polito.it">Stefano Trepella</maintainer>
-  <license>Apache-2.0</license>
+  <license>GNU General Public License 3.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
