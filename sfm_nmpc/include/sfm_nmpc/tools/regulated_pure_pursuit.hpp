@@ -1,5 +1,5 @@
-
-#pragma once
+#ifndef SFM_NMPC__TOOLS__REGULATED_PURE_PURSUIT_HPP_
+#define SFM_NMPC__TOOLS__REGULATED_PURE_PURSUIT_HPP_
 
 #include <algorithm>
 #include <cmath>
@@ -369,3 +369,4 @@ private:
 };
 
 }  // namespace sfm_nmpc
+#endif  // SFM_NMPC__TOOLS__REGULATED_PURE_PURSUIT_HPP_

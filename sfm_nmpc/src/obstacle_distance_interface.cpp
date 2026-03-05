@@ -2,8 +2,6 @@
 
 namespace sfm_nmpc
 {
-
-// TODO:
 // add a function that takes the occupancyGrid of the costmap as argument
 // and call the obstacleDistance service to get the ObstacleDistance msg
 ObstacleDistInterface::ObstacleDistInterface(rclcpp_lifecycle::LifecycleNode::WeakPtr parent,

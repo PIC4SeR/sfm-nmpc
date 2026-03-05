@@ -62,7 +62,7 @@ The package behavior is documented in `src/sfm-nmpc/docs`:
 From the workspace root:
 
 ```bash
-cd /workspaces/hunavsim_devcontainer
+cd ~/ros2_ws
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select sfm_nmpc
 source install/setup.bash
@@ -120,17 +120,5 @@ ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True \
 - **Build profile**: defaults to `Release` and keeps `-fPIC` enabled for plugin compatibility.
 - **Testing**: CI path is to enable `BUILD_TESTING` and add `test/` gtests; current upstream validation is simulation-benchmark based.
 - **Formatting**: Nav2/ament lint configuration is declared in `package.xml`.
-
-## Citation
-
-If you build on this controller, please cite this repository and any related publications:
-
-```bibtex
-@misc{sfm_nmpc_controller,
-  title        = {SFM-NMPC: Social-Force-Aware Nav2 Controller},
-  year         = {2026},
-  howpublished = {\url{https://github.com/<org>/hunavsim_devcontainer/tree/master/src/sfm-nmpc}}
-}
-```
 
 This package is distributed under Apache-2.0 (`package.xml`). Individual dependencies retain their own licenses.

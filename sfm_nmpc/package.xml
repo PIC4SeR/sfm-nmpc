@@ -6,7 +6,10 @@
   <description>Social MPC Controller</description>
   <author email="noeperez@upo.es">Noé Pérez</author>
   <author email="fcaballero@us.es">Fernando Caballero</author>
-  <maintainer email="noeperez@upo.es">Noé Pérez</maintainer>
+  <author email="andrea.ostuni@polito.it">Andrea Ostuni</author>
+  <author email="stefano.trepella@polito.it">Stefano Trepella</author>
+  <author email="mauro.martini@polito.it">Mauro Martini</author>
+  <maintainer email="stefano.trepella@polito.it">Stefano Trepella</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
@@ -25,7 +28,6 @@
   <depend>pluginlib</depend>
   <depend>tf2</depend>
   <depend>libceres-dev</depend>
-  <!--<depend>lightsfm</depend>-->
 
   <test_depend>ament_cmake_gtest</test_depend>
   <test_depend>ament_lint_common</test_depend>
