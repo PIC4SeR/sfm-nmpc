@@ -4,12 +4,12 @@
   <name>sfm_nmpc</name>
   <version>0.4.7</version>
   <description>Social MPC Controller</description>
-  <author email="noeperez@upo.es">Noé Pérez</author>
-  <author email="fcaballero@us.es">Fernando Caballero</author>
-  <author email="andrea.ostuni@polito.it">Andrea Ostuni</author>
-  <author email="stefano.trepella@polito.it">Stefano Trepella</author>
-  <author email="mauro.martini@polito.it">Mauro Martini</author>
-  <maintainer email="stefano.trepella@polito.it">Stefano Trepella</maintainer>
+  <author email="anonymous@example.org">Noé Pérez</author>
+  <author email="anonymous@example.org">Fernando Caballero</author>
+  <author email="anonymous@example.org">Andrea Ostuni</author>
+  <author email="anonymous@example.org">Stefano Trepella</author>
+  <author email="anonymous@example.org">Mauro Martini</author>
+  <maintainer email="anonymous@example.org">Stefano Trepella</maintainer>
   <license>GNU General Public License 3.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
