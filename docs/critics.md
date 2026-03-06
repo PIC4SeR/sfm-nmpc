@@ -105,38 +105,82 @@ Below is an example YAML configuration for the `FollowPath` behavior using the `
 
 ```yaml
 FollowPath:
-    plugin: "sfm_nmpc::MPCSFMMotionModel"
+
+    plugin: sfm_nmpc::MPCSFMMotionModel
+    transform_tolerance: 0.5
+    max_robot_pose_search_dist: 6.0
+    max_linear_vel: 0.6
+    min_linear_vel: -0.2
+    max_angular_vel: 1.4
     trajectorizer:
-        desired_linear_vel: 0.6
-        lookahead_dist: 2.0
-        max_angular_vel: 1.4
-        transform_tolerance: 0.5
-        base_frame: "base_link"
-        time_step: 0.05
-        max_time: 1.5
+      waypoint_dist_tol: 0.05
+      desired_linear_vel: 0.6
+      omnidirectional: false
+      lookahead_dist: 2.0
+      allow_reverse: false
+      reverse_heading_threshold: 2.56
+      max_reverse_speed: 0.2
+      base_frame: "base_link"
+      time_step: 0.10
+      max_time: 2.0
+      motion_model_type: "unicycle"
+      max_angular_accel: 3.0
+      max_linear_accel: 2.5
+      min_approach_linear_velocity: 0.05
+      
+      rotate_to_heading_angular_vel: 0.4
+      rotate_to_heading_min_angle: 1.57
+      use_interpolation: true
+      use_rotate_to_heading: true
+      # Obstacle avoidance (regulated pure pursuit)
+      use_cost_regulated_linear_velocity_scaling: true
+      cost_scaling_dist: 0.6
+      cost_scaling_gain: 1.0
+      inflation_cost_scaling_factor: 3.0
+      use_collision_detection: false
+      max_allowed_time_to_collision_up_to_carrot: 1.0
+      projection_lookahead_resolution: 0.1
+      
     optimizer:
-        linear_solver_type: "DENSE_SCHUR"
-        param_tol: 1.0e-9
-        fn_tol: 1.0e-5
-        gradient_tol: 1.0e-8
-        max_iterations: 40
-        control_horizon: 18
-        parameter_block_length: 6
-        discretization: 1
-        debug_optimizer: false
-        current_path_weight: 1.0
-        current_cmds_weight: 0.5
-        weights:
-            distance_weight: 20.0
-            social_weight: 720.0 #400.0
-            velocity_weight: 10.0
-            angle_weight: 250.0
-            agent_angle_weight: 40.0 #50.0
-            proxemics_weight: 40.0
-            velocity_feasibility_weight: 5.0
-            goal_align_weight: 10.0
-            obstacle_weight: 0.13 #0.15
-            #obstacle_weight: 0.000005
+      linear_solver_type: "DENSE_SCHUR"
+      param_tol: 1.0e-9
+      fn_tol: 1.0e-5
+      gradient_tol: 1.0e-8
+      max_iterations: 40
+      control_horizon: 18
+      parameter_block_length: 6
+      discretization: 1
+      debug_optimizer: false
+      current_path_weight: 0.5
+      current_cmds_weight: 0.5
+      goal_proximity_activation_radius: 0.75
+      goal_proximity_decay_distance: 0.25
+      agent_velocity_bound: 0.6
+      stationary_agent_velocity_bound: 0.01
+      max_agents: 3
+      critics:
+        enable_social_work: false
+        enable_path_align: false
+        enable_path_follow: false
+        enable_proxemics: false
+        enable_angle: false
+        enable_crossing: false
+      weights:
+        # Navigation (path following)
+        distance_weight: 9.0          # Path tracking — squared dist, moderate raw value
+        angle_weight: 1.5             # 
+        goal_align_weight: 8.0        # Heading 
+        goal_proximity_weight: 5.0   # Log 
+        velocity_weight: 4.5          # Desired 
+        velocity_feasibility_weight: 8.0  # 
+        # Safety
+        obstacle_weight: 0.1          # Costmap 
+        social_weight: 40.0           # SFM force 
+        proxemics_weight: 8.0         # Proximity 
+        agent_angle_weight: 5.0      # Don't point 
+        velocity_alignment_weight: 8.0  # Don't 
+        crossing_weight: 20.0         # Speed 
+        crossing_bearing_weight: 5.0   # 
 ```
 
 This configuration sets parameters for trajectory generation and optimization, including weights for each cost function described above.
