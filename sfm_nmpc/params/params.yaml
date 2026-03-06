@@ -162,25 +162,25 @@ controller_server:
           enable_crossing: false
         weights:
           # Navigation (path following)
-          distance_weight: 9.0          # Path tracking — squared dist, moderate raw value
-          angle_weight: 1.5             # Per-waypoint heading — keep LOW to allow avoidance
+          distance_weight: 9.0          # Path tracking - squared dist, moderate raw value
+          angle_weight: 1.5             # Per-waypoint heading - keep LOW to allow avoidance
 
           # Goal reaching
-          goal_align_weight: 8.0        # Heading toward goal — squared angle, similar scale to distance
+          goal_align_weight: 8.0        # Heading toward goal - squared angle, similar scale to distance
           goal_proximity_weight: 5.0   # Log potential: log(1+d/ε), raw ≈ 1.6 at 1m, 0.7 at 0.25m
 
           # Speed & smoothness
-          velocity_weight: 4.5          # Desired speed tracking — raw is small (≤0.36)
-          velocity_feasibility_weight: 8.0  # Block-to-block smoothness — only 2 residuals total
+          velocity_weight: 4.5          # Desired speed tracking - raw is small (≤0.36)
+          velocity_feasibility_weight: 8.0  # Block-to-block smoothness - only 2 residuals total
 
           # Safety
-          obstacle_weight: 0.1          # Costmap avoidance — raw 0–254, tiny weight needed
+          obstacle_weight: 0.1          # Costmap avoidance - raw 0-254, tiny weight needed
 
           # Social (start conservative, increase if needed)
-          social_weight: 40.0           # SFM force — raw ≈ 0.01–0.1, needs large amplification
-          proxemics_weight: 8.0         # Proximity to people — raw ≈ 0.3 at 1m
-          agent_angle_weight: 5.0      # Don't point at people — raw ≈ 0.5–1.0
-          velocity_alignment_weight: 8.0  # Don't follow people's heading — sub-weight of agent_angle
+          social_weight: 40.0           # SFM force - raw ≈ 0.01-0.1, needs large amplification
+          proxemics_weight: 8.0         # Proximity to people - raw ≈ 0.3 at 1m
+          agent_angle_weight: 5.0      # Don't point at people - raw ≈ 0.5-1.0
+          velocity_alignment_weight: 8.0  # Don't follow people's heading - sub-weight of agent_angle
           crossing_weight: 20.0         # Speed penalty during crossing encounters
           crossing_bearing_weight: 5.0   # Sub-weight: penalise being in front of agent along their trajectory
 
