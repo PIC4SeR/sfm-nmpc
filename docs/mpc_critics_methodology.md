@@ -28,9 +28,9 @@ This term is used in two modes controlled by separate enable flags: *path follow
 
 Penalises the squared, wrapped angular deviation between the robot's predicted heading $\theta_t$ and the heading of the reference path segment $\phi_{\text{ref}}^{(t)}$:
 
-$$r_{\text{angle}}^{(t)} = w_{\text{angle}} \cdot \left(\operatorname{atan2}\!\big(\sin(\phi_{\text{ref}} - \theta_t),\, \cos(\phi_{\text{ref}} - \theta_t)\big)\right)^2$$
+$$r_{\text{angle}}^{(t)} = w_{\text{angle}} \cdot \left(\mathrm{atan2}\!\big(\sin(\phi_{\text{ref}} - \theta_t),\, \cos(\phi_{\text{ref}} - \theta_t)\big)\right)^2$$
 
-The $\operatorname{atan2}(\sin(\cdot), \cos(\cdot))$ wrapping ensures the difference remains in $[-\pi, \pi]$, avoiding discontinuities at $\pm\pi$.
+The $\mathrm{atan2}(\sin(\cdot), \cos(\cdot))$ wrapping ensures the difference remains in $[-\pi, \pi]$, avoiding discontinuities at $\pm\pi$.
 
 ### 3. Obstacle Cost (ObstacleCost)
 
@@ -48,7 +48,7 @@ where $\mathcal{C}(\cdot) \in [0, 254]$ is the interpolated costmap value. The l
 
 Penalises squared angular deviation between the predicted heading and the bearing toward the final goal:
 
-$$r_{\text{ga}}^{(t)} = w_{\text{ga}} \cdot \left(\operatorname{atan2}\!\big(\sin(\phi_{\text{goal}} - \theta_t),\, \cos(\phi_{\text{goal}} - \theta_t)\big)\right)^2$$
+$$r_{\text{ga}}^{(t)} = w_{\text{ga}} \cdot \left(\mathrm{atan2}\!\big(\sin(\phi_{\text{goal}} - \theta_t),\, \cos(\phi_{\text{goal}} - \theta_t)\big)\right)^2$$
 
 where $\phi_{\text{goal}}$ is the desired goal heading.
 
@@ -114,14 +114,14 @@ where $d_0$ is the characteristic proxemic distance and $\alpha$ is a scaling fa
 
 Penalises the robot for heading toward or travelling in the same direction as the nearest moving agent. It has two components, both modulated by exponential distance decay:
 
-$$r_{\text{aa}}^{(t)} = w_{\text{aa}} \cdot e^{-d^2/d_s^2} \cdot \Big(\underbrace{\operatorname{softplus}\!\big(\cos(\theta_t - \phi_{j})\big)}_{\text{position alignment}} + w_v \cdot \underbrace{\operatorname{softplus}\!\big(\cos(\theta_t - \psi_{j})\big)}_{\text{velocity alignment}}\Big)$$
+$$r_{\text{aa}}^{(t)} = w_{\text{aa}} \cdot e^{-d^2/d_s^2} \cdot \Big(\underbrace{\mathrm{softplus}\!\big(\cos(\theta_t - \phi_{j})\big)}_{\text{position alignment}} + w_v \cdot \underbrace{\mathrm{softplus}\!\big(\cos(\theta_t - \psi_{j})\big)}_{\text{velocity alignment}}\Big)$$
 
-where $\phi_j = \operatorname{atan2}(y_j - y_t,\, x_j - x_t)$ is the bearing to the agent and $\psi_j$ is the agent's heading. The softplus function $\operatorname{softplus}(x) = \frac{1}{k}\ln(1 + e^{kx})$ with $k=5$ acts as a smooth ReLU, activating the penalty only when the robot points toward the agent ($\cos > 0$) or travels in the same direction.
+where $\phi_j = \mathrm{atan2}(y_j - y_t,\, x_j - x_t)$ is the bearing to the agent and $\psi_j$ is the agent's heading. The softplus function $\mathrm{softplus}(x) = \frac{1}{k}\ln(1 + e^{kx})$ with $k=5$ acts as a smooth ReLU, activating the penalty only when the robot points toward the agent ($\cos > 0$) or travels in the same direction.
 
 ### 11. Crossing Cost (CrossingCost)
 
 Specifically addresses perpendicular crossing encounters with two components:
 
-$$r_{\text{cross}}^{(t)} = w_{\text{cross}} \cdot e^{-d^2/d_s^2} \cdot \Big(\underbrace{v_b \cdot \sin^2(\theta_t - \psi_j)}_{\text{speed penalty}} + w_{\text{bear}} \cdot \underbrace{\operatorname{softplus}\!\big(\mathbf{c} \cdot \omega_b \cdot s\big) \cdot \sin^2(\theta_t - \psi_j)}_{\text{steering penalty}}\Big)$$
+$$r_{\text{cross}}^{(t)} = w_{\text{cross}} \cdot e^{-d^2/d_s^2} \cdot \Big(\underbrace{v_b \cdot \sin^2(\theta_t - \psi_j)}_{\text{speed penalty}} + w_{\text{bear}} \cdot \underbrace{\mathrm{softplus}\!\big(\mathbf{c} \cdot \omega_b \cdot s\big) \cdot \sin^2(\theta_t - \psi_j)}_{\text{steering penalty}}\Big)$$
 
 where $\sin^2(\Delta\theta)$ gates the cost to peak at 90° crossings and vanish for same/opposite headings. The scalar $\mathbf{c}$ is the 2D cross product of the robot-to-agent vector with the agent's heading direction, determining whether the agent approaches from the left or right. The softplus of $\mathbf{c} \cdot \omega$ penalises angular velocity in the wrong rotational direction (i.e., turning in front of rather than behind the crossing agent). Both components provide **direct gradients** on the velocity parameters $v_b$ and $\omega_b$, yielding faster convergence than position-chain-rule-based costs alone.
