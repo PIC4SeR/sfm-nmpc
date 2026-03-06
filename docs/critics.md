@@ -23,18 +23,11 @@ The initial position and orientation of the robot is passed for the critics that
 Some critics feature parameters containing the trajectorized path points, either positions or headings.
 
 **Social params:**
-The two social critics feature the information about the predicted agents positions and velocities.
+The social critics feature the information about the predicted agents positions and velocities.
 
 ---
 
-## Agent Angle Cost Function
 
-**Purpose:**  
-Enforces an angular speed for the robot in certain situations.  
-**Behavior:**  
-If an agent is on the left side of the robot, the critic encourages steering to the right to follow social norms.
-
----
 
 ## Distance Cost Function
 
@@ -85,6 +78,28 @@ Uses the Social Force Model (SFM) to consider social work as a cost, aiming to m
 
 **Purpose:**
 Consideres the distance with neighboring agents as a cost, aiming to maximize it.
+
+---
+
+
+## Agent Angle Cost Function
+
+**Purpose:**  
+Enforces an angular speed for the robot in certain situations.  
+**Behavior:**  
+If an agent is on the left side of the robot, the critic encourages steering to the right to follow social norms. Also penalizes heading toward an agent or aligning its velocity with theirs.
+
+---
+
+## Crossing Cost Function
+
+**Purpose:**  
+Penalizes the robot's speed and steering when crossing the path of a moving agent.
+
+**Behavior:**  
+Acts as a safety buffer by encouraging the robot to yield (slow down) or turn away when its path intersects perpendicularly or diagonally with another agent's predicted trajectory.
+
+---
 
 ## Velocity Cost Function
 
