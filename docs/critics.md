@@ -167,20 +167,20 @@ FollowPath:
         enable_crossing: false
       weights:
         # Navigation (path following)
-        distance_weight: 9.0          # Path tracking — squared dist, moderate raw value
-        angle_weight: 1.5             # 
-        goal_align_weight: 8.0        # Heading 
-        goal_proximity_weight: 5.0   # Log 
-        velocity_weight: 4.5          # Desired 
-        velocity_feasibility_weight: 8.0  # 
+        distance_weight: 9.0         
+        angle_weight: 1.5            
+        goal_align_weight: 8.0       
+        goal_proximity_weight: 5.0   
+        velocity_weight: 4.5          
+        velocity_feasibility_weight: 8.0 
         # Safety
-        obstacle_weight: 0.1          # Costmap 
-        social_weight: 40.0           # SFM force 
-        proxemics_weight: 8.0         # Proximity 
-        agent_angle_weight: 5.0      # Don't point 
-        velocity_alignment_weight: 8.0  # Don't 
-        crossing_weight: 20.0         # Speed 
-        crossing_bearing_weight: 5.0   # 
+        obstacle_weight: 0.1          
+        social_weight: 40.0           
+        proxemics_weight: 8.0        
+        agent_angle_weight: 5.0     
+        velocity_alignment_weight: 8.0  
+        crossing_weight: 20.0         
+        crossing_bearing_weight: 5.0    
 ```
 
 This configuration sets parameters for trajectory generation and optimization, including weights for each cost function described above.
