@@ -1,7 +1,7 @@
 [![ROS 2 Humble](https://img.shields.io/badge/ROS%202-Humble-blue.svg)](https://docs.ros.org/en/humble/)
 [![Nav2 Controller](https://img.shields.io/badge/Nav2-Controller-orange.svg)](https://navigation.ros.org/)
 [![Ceres Solver](https://img.shields.io/badge/Ceres-Solver-9cf.svg)](http://ceres-solver.org/)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-green.svg)](package.xml)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 <h1 align="center">SFM-NMPC: Social-Force-Aware Nav2 Controller</h1>
 
