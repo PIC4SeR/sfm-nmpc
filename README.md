@@ -120,5 +120,3 @@ ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True \
 - **Build profile**: defaults to `Release` and keeps `-fPIC` enabled for plugin compatibility.
 - **Testing**: CI path is to enable `BUILD_TESTING` and add `test/` gtests; current upstream validation is simulation-benchmark based.
 - **Formatting**: Nav2/ament lint configuration is declared in `package.xml`.
-
-This package is distributed under Apache-2.0 (`package.xml`). Individual dependencies retain their own licenses.
