@@ -2,6 +2,8 @@
 [![Nav2 Controller](https://img.shields.io/badge/Nav2-Controller-orange.svg)](https://navigation.ros.org/)
 [![Ceres Solver](https://img.shields.io/badge/Ceres-Solver-9cf.svg)](http://ceres-solver.org/)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+TODO add correct reference link
+[![arXiv](http://img.shields.io/badge/arXiv-2001.09136-B31B1B.svg)](https://arxiv.org/abs/2107.00606)
 
 <h1 align="center">SFM-NMPC: Social-Force-Aware Nav2 Controller</h1>
 
@@ -120,3 +122,23 @@ ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True \
 - **Build profile**: defaults to `Release` and keeps `-fPIC` enabled for plugin compatibility.
 - **Testing**: CI path is to enable `BUILD_TESTING` and add `test/` gtests; current upstream validation is simulation-benchmark based.
 - **Formatting**: Nav2/ament lint configuration is declared in `package.xml`.
+
+# Citations
+Remind users to cite your work, e.g.:
+
+This repository is intended for scientific research purposes.
+If you want to use this code for your research, please cite our work ([Paper Name](https://arxiv.org/)).
+
+```
+[.bib citation here]
+```
+
+# References
+[Other references that should be cited when using this repository here]
+
+# Acknowledgements
+[Acknowledgements here]
+
+<p align="left">
+  <img src="https://media.giphy.com/media/yWh7b6fWA5rJm/giphy.gif?cid=790b7611ieiiqtp06t9x5bju00gzcgryrw8me999ep27ovcj&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="animated" />
+</p>

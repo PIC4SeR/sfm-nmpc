@@ -18,6 +18,9 @@
 
 #include <algorithm>
 #include <limits>
+#include <tuple>
+
+#include "sfm_nmpc/update_state.hpp"
 
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
@@ -564,6 +567,33 @@ bool Optimizer::optimize(nav_msgs::msg::Path& path, AgentsTrajectories& people_p
     previous_pose_old.pose.orientation = pose_old.pose.orientation;
 
     path.poses.push_back(pose_old);
+  }
+
+  // The critics propagate the agents only transiently inside the residual
+  // evaluations, so re-roll the same SFM propagation with the optimized
+  // velocities to expose the predicted agent trajectories (one entry per
+  // time step, aligned with the rebuilt path poses).
+  people_proj.clear();
+  if (!people.people.empty())
+  {
+    Eigen::Matrix<double, 6, 3> agents_zero;
+    for (unsigned int j = 0; j < init_people.size(); j++)
+    {
+      agents_zero.col(j) << init_people[j][0], init_people[j][1], init_people[j][2], init_people[j][3],
+          init_people[j][4], init_people[j][5];
+    }
+    for (unsigned int i = 0; i < saving_velocities.size(); i++)
+    {
+      auto sfm_state = computeSFMState<double>(evolving_poses[0].pose, agents_zero, parameter_blocks.data(),
+                                               time_step, i, control_horizon, block_length);
+      const Eigen::Matrix<double, 6, 3>& agents_i = std::get<3>(sfm_state);
+      AgentsStates step_agents;
+      for (unsigned int j = 0; j < agents_i.cols(); j++)
+      {
+        step_agents.push_back(agents_i.col(j));
+      }
+      people_proj.push_back(step_agents);
+    }
   }
 
   memory.previous_path = path;

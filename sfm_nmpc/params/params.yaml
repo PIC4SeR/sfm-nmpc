@@ -137,7 +137,7 @@ controller_server:
         projection_lookahead_resolution: 0.1
         
       optimizer:
-        linear_solver_type: "DENSE_SCHUR"
+        linear_solver_type: "DENSE_QR"
         param_tol: 1.0e-9
         fn_tol: 1.0e-5
         gradient_tol: 1.0e-8
