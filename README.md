@@ -2,8 +2,7 @@
 [![Nav2 Controller](https://img.shields.io/badge/Nav2-Controller-orange.svg)](https://navigation.ros.org/)
 [![Ceres Solver](https://img.shields.io/badge/Ceres-Solver-9cf.svg)](http://ceres-solver.org/)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-TODO add correct reference link
-[![arXiv](http://img.shields.io/badge/arXiv-2001.09136-B31B1B.svg)](https://arxiv.org/abs/2107.00606)
+[![arXiv](https://img.shields.io/badge/arXiv-2001.09136-B31B1B.svg)](https://arxiv.org/abs/2607.10374)
 
 <h1 align="center">SFM-NMPC: Social-Force-Aware Nav2 Controller</h1>
 
@@ -124,21 +123,22 @@ ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True \
 - **Formatting**: Nav2/ament lint configuration is declared in `package.xml`.
 
 # Citations
-Remind users to cite your work, e.g.:
 
 This repository is intended for scientific research purposes.
-If you want to use this code for your research, please cite our work ([Paper Name](https://arxiv.org/)).
+If you want to use this code for your research, please cite our work ([Navigating the Crowd: Non-linear MPC with Social Forces Dynamics for Human-Aware Robot Navigation](https://arxiv.org/abs/2607.10374)).
 
 ```
-[.bib citation here]
+@misc{trepella2026navigatingcrowdnonlinearmpc,
+      title={Navigating the Crowd: Non-linear MPC with Social Forces Dynamics for Human-Aware Robot Navigation}, 
+      author={Stefano Trepella and Andrea Ostuni and Mauro Martini and Pablo Pueyo and Noé Pérez-Higueras and Marcello Chiaberge and Fernando Caballero and Luis Merino},
+      year={2026},
+      eprint={2607.10374},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2607.10374}, 
+}
 ```
-
-# References
-[Other references that should be cited when using this repository here]
 
 # Acknowledgements
-[Acknowledgements here]
 
-<p align="left">
-  <img src="https://media.giphy.com/media/yWh7b6fWA5rJm/giphy.gif?cid=790b7611ieiiqtp06t9x5bju00gzcgryrw8me999ep27ovcj&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="animated" />
-</p>
+This work was partially supported by the SWIch action (P.R.F.E.S.R.2021/27 - D.G.R. n.19-6962) within the EMPATHY project, and by PoliTO Interdepartmental Centre for Service Robotics (PIC4SeR). It is also partially supported by the project AI-FUSE (SAIA202500X163851SV0) and COBUILD (PID2024-161069OB-C31), funded by the Spanish Research Agency and the Ministry of Science and the European Union (MCIN/AEI/10.13039/501100011033) and by ERDF ”A way of making Europe”
