@@ -10,7 +10,9 @@
   <img src="docs/images/sfm_nmpc_open_crowded_scenario.gif" alt="SFM-NMPC open crowded scenario" width="680" />
 </p>
 
+This is the official repo for the IROS 2026 paper [Navigating the Crowd: Non-linear MPC with Social Forces Dynamics for Human-Aware Robot Navigation](https://arxiv.org/abs/2607.10374).
 `sfm_nmpc` is a Nav2 controller plugin that optimizes short-horizon velocity commands with Ceres. It combines classical trajectory-tracking critics with Social Force Model (SFM) social costs, so the robot can plan toward goals while respecting nearby people, proxemics, and social flow.
+
 
 ## At a glance
 
@@ -141,4 +143,4 @@ If you want to use this code for your research, please cite our work ([Navigatin
 
 # Acknowledgements
 
-This work was partially supported by the SWIch action (P.R.F.E.S.R.2021/27 - D.G.R. n.19-6962) within the EMPATHY project, and by PoliTO Interdepartmental Centre for Service Robotics (PIC4SeR). It is also partially supported by the project AI-FUSE (SAIA202500X163851SV0) and COBUILD (PID2024-161069OB-C31), funded by the Spanish Research Agency and the Ministry of Science and the European Union (MCIN/AEI/10.13039/501100011033) and by ERDF ”A way of making Europe”
+This work was partially supported by the SWIch action (P.R.F.E.S.R.2021/27 - D.G.R. n.19-6962) within the EMPATHY project, and by PoliTO Interdepartmental Centre for Service Robotics ([PIC4SeR](https://pic4ser.polito.it)). It is also partially supported by the project AI-FUSE (SAIA202500X163851SV0) and COBUILD (PID2024-161069OB-C31), funded by the Spanish Research Agency and the Ministry of Science and the European Union (MCIN/AEI/10.13039/501100011033) and by ERDF ”A way of making Europe”
