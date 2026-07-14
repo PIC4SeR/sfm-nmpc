@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SFM-NMPC: a Social Force Model-based non-linear MPC that embeds human motion prediction in the optimization loop for human-aware robot navigation. IROS 2026.">
+  <meta name="keywords" content="social navigation, model predictive control, social force model, Nav2, ROS 2, human-aware navigation, robotics">
+  <meta name="author" content="Stefano Trepella, Andrea Ostuni, Mauro Martini, Pablo Pueyo, Noé Pérez-Higueras, Marcello Chiaberge, Fernando Caballero, Luis Merino">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Navigating the Crowd: Non-linear MPC with Social Forces Dynamics for Human-Aware Robot Navigation">
+  
+  <meta property="og:site_name" content="PIC4SeR">
+  <meta property="og:description" content="SFM-NMPC embeds the Social Force Model in the agent dynamics of an NMPC, jointly predicting human and robot trajectories at 20 Hz.">
+  <meta property="og:url" content="https://pic4ser.github.io/sfm-nmpc/">
+  <meta property="og:image" content="https://pic4ser.github.io/sfm-nmpc/docs/images/NMPC.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="citation_title" content="Navigating the Crowd: Non-linear MPC with Social Forces Dynamics for Human-Aware Robot Navigation">
+  <meta name="citation_author" content="Trepella, Stefano">
+  <meta name="citation_author" content="Ostuni, Andrea">
+  <meta name="citation_author" content="Martini, Mauro">
+  <meta name="citation_author" content="Pueyo, Pablo">
+  <meta name="citation_author" content="Pérez-Higueras, Noé">
+  <meta name="citation_author" content="Chiaberge, Marcello">
+  <meta name="citation_author" content="Caballero, Fernando">
+  <meta name="citation_author" content="Merino, Luis">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2607.10374">
+
+  <title>SFM-NMPC | Navigating the Crowd (IROS 2026)</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', -apple-system, sans-serif; }
+    .publication-title { font-weight: 800; letter-spacing: -0.02em; }
+    .publication-authors { margin-top: 1.2rem; }
+    .publication-authors a { color: #3273dc; text-decoration: none; }
+    .publication-links { margin-top: 1.6rem; }
+    .publication-links .link-block { margin: 0 .25rem; }
+    .hero-body { padding-bottom: 2rem; }
+    .teaser img { border-radius: 8px; }
+    .teaser .subtitle, .figure-caption { font-size: .95rem; color: #4a4a4a; margin-top: .75rem; }
+    .section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+    #BibTeX pre { background: #f5f5f5; border-radius: 6px; }
+    .content pre { font-size: .85rem; }
+    .footer { padding: 2rem 1.5rem; }
+  </style>
+
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Navigating the Crowd: Non-linear MPC with Social Forces Dynamics for Human-Aware Robot Navigation</h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Stefano Trepella<sup>1</sup>,</span>
+            <span class="author-block">Andrea Ostuni<sup>1</sup>,</span>
+            <span class="author-block">Mauro Martini<sup>1</sup>,</span>
+            <span class="author-block">Pablo Pueyo<sup>2</sup>,</span>
+            <span class="author-block">Noé Pérez-Higueras<sup>2</sup>,</span>
+            <span class="author-block">Marcello Chiaberge<sup>1</sup>,</span>
+            <span class="author-block">Fernando Caballero<sup>2</sup>,</span>
+            <span class="author-block">Luis Merino<sup>2</sup></span>
+          </div>
+
+          
+          <div class="is-size-7 publication-authors">
+            <span class="author-block"><sup>1</sup> Interdepartmental Centre for Service Robotics at PoliTO PIC4SeR<br></span>
+            <span class="author-block"><sup>2</sup> Service Robotics Lab of the Pablo de Olavide University<br></span>
+          </div>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">IROS 2026</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2607.10374" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2607.10374" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://github.com/PIC4SeR/sfm-nmpc" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body has-text-centered">
+      <img src="docs/images/sfm_nmpc_open_crowded_scenario.gif" alt="SFM-NMPC navigating an open crowded scenario">
+      <h2 class="subtitle">
+        <strong>SFM-NMPC</strong> jointly predicts human and robot trajectories inside the optimization loop, navigating crowds in real time at 20 Hz.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Safe and socially compliant navigation remains a fundamental challenge for autonomous robots operating in human-populated environments. Beyond collision avoidance, robots must anticipate human motion and respect personal space to ensure human comfort. Model Predictive Control (MPC) offers a robust alternative to classical and data-driven methods, although its effectiveness strongly depends on accurate human motion prediction and efficient computation. This paper introduces SFM-NMPC, a Social Force Model-based Non-linear Model Predictive Control framework that embeds human motion prediction directly within the optimization loop. By incorporating the Social Force Model into the dynamic model of surrounding agents, the controller jointly predicts the trajectories of humans and robots over the prediction horizon, thereby enabling socially-aware planning. A tailored set of social cost functions guides the optimization toward human-compliant behaviors. Despite the increased model complexity, the proposed formulation runs in real time at 20 Hz. Extensive simulated testing in crowded environments demonstrates that SFM-NMPC outperforms state-of-the-art baselines in social compliance metrics while maintaining efficient and smooth navigation. Visual trajectory analysis and an ablation study further highlight the contribution of the embedded SFM dynamics and social cost terms, confirming the effectiveness of the proposed approach for real-world social navigation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method</h2>
+    <div class="has-text-centered">
+      <img src="docs/images/NMPC.jpg" alt="SFM-NMPC pipeline">
+      <p class="figure-caption">The controller rolls out a unicycle model over the horizon, co-predicts agent states with the Social Force Model, and folds all critics into a single weighted least-squares objective solved with Ceres.</p>
+    </div>
+    <div class="content" style="margin-top:2rem;">
+      <ul>
+        <li>Unicycle rollout model for robot predictions over the horizon.</li>
+        <li>A critic stack assembled in the <code>optimizer</code> forming one weighted least-squares objective.</li>
+        <li>SFM-based future agent states, co-predicted and coupled into the social penalties each cycle.</li>
+      </ul>
+    </div>
+    <div class="has-text-centered" style="margin-top:2rem;">
+      <img src="docs/images/social_interaction_vectors.png" alt="Social interaction vectors">
+      <p class="figure-caption">Social interaction terms and force components.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3 has-text-centered">Code</h2>
+    <p>
+      <code>sfm_nmpc</code> is a Nav2 controller plugin (<code>sfm_nmpc::MPCSFMMotionModel</code>) that optimizes short-horizon velocity commands with Ceres, combining classical trajectory-tracking critics with SFM social costs.
+    </p>
+
+    <h3 class="title is-5">Critics</h3>
+    <ul>
+      <li><strong>Path tracking:</strong> <code>DistanceCost</code>, <code>AngleCost</code></li>
+      <li><strong>Goal behavior:</strong> <code>GoalAlignCost</code>, <code>GoalProximityCost</code></li>
+      <li><strong>Safety:</strong> <code>ObstacleCost</code></li>
+      <li><strong>Smoothness:</strong> <code>VelocityCost</code>, <code>VelocityFeasibilityCost</code></li>
+      <li><strong>Social:</strong> <code>SocialWorkCost</code>, <code>ProxemicsCost</code>, <code>AgentAngleCost</code>, <code>CrossingCost</code></li>
+    </ul>
+
+    <h3 class="title is-5">Build</h3>
+    <pre><code>cd ~/ros2_ws
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --packages-select sfm_nmpc
+source install/setup.bash</code></pre>
+
+    <h3 class="title is-5">Use in Nav2</h3>
+    <p>
+    Set the following parameters in your Nav2 controller configuration file (e.g., <code>params.yaml</code>):
+    </p>
+    <pre><code>controller_server:
+  ros__parameters:
+    controller_frequency: 20.0
+    controller_plugins: ["FollowPath"]
+    FollowPath:
+      plugin: "sfm_nmpc::MPCSFMMotionModel"
+      trajectorizer:
+        desired_linear_vel: 0.6
+        lookahead_dist: 1.0
+        max_angular_vel: 1.4
+        time_step: 0.05
+        max_time: 1.5
+      optimizer:
+        linear_solver_type: "DENSE_SCHUR"
+        control_horizon: 18
+        parameter_block_length: 6
+        weights:
+          distance_weight: 20.0
+          angle_weight: 250.0
+          obstacle_weight: 0.13
+          social_weight: 720.0
+          proxemics_weight: 40.0
+          agent_angle_weight: 40.0
+          velocity_feasibility_weight: 5.0</code></pre>
+  <p>To launch the controller with the provided parameters, run:</p>
+    <pre><code>ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True \
+  params:=$PWD/src/sfm-nmpc/params/params.yaml</code></pre>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>@misc{trepella2026navigatingcrowdnonlinearmpc,
+      title={Navigating the Crowd: Non-linear MPC with Social Forces Dynamics for Human-Aware Robot Navigation},
+      author={Stefano Trepella and Andrea Ostuni and Mauro Martini and Pablo Pueyo and Noé Pérez-Higueras and Marcello Chiaberge and Fernando Caballero and Luis Merino},
+      year={2026},
+      eprint={2607.10374},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2607.10374},
+}</code></pre>
+  </div>
+</section>
+
+<section class="section" id="Acknowledgments">
+  <div class="container is-max-desktop content">
+      <h2 class="title is-3">Acknowledgments</h2>
+      <p>
+        This work was partially supported by the SWIch action (P.R.F.E.S.R.2021/27 - D.G.R. n.19-6962) within the EMPATHY project, and by the PoliTO Interdepartmental Centre for Service Robotics
+        (<a href="https://pic4ser.polito.it" target="_blank">PIC4SeR</a>). It is also partially supported by the project AI-FUSE (SAIA202500X163851SV0) and COBUILD (PID2024-161069OB-C31), funded by the Spanish Research Agency and the Ministry of Science and the European Union (MCIN/AEI/10.13039/501100011033) and by ERDF "A way of making Europe".
+      </p>
+  </div>
+</section>
+
+<footer class="footer" id="footer">
+  <div class="content has-text-centered">    
+    <p class="is-size-7">
+      Code released under GPL-3.0. Page built from the
+      <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
