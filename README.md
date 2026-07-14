@@ -2,7 +2,7 @@
 [![Nav2 Controller](https://img.shields.io/badge/Nav2-Controller-orange.svg)](https://navigation.ros.org/)
 [![Ceres Solver](https://img.shields.io/badge/Ceres-Solver-9cf.svg)](http://ceres-solver.org/)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![arXiv](https://img.shields.io/badge/arXiv-2001.09136-B31B1B.svg)](https://arxiv.org/abs/2607.10374)
+[![arXiv](https://img.shields.io/badge/arXiv-2607.10374-B31B1B.svg)](https://arxiv.org/abs/2607.10374)
 
 <h1 align="center">SFM-NMPC: Social-Force-Aware Nav2 Controller</h1>
 
