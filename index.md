@@ -1,16 +1,34 @@
-[![ROS 2 Humble](https://img.shields.io/badge/ROS%202-Humble-blue.svg)](https://docs.ros.org/en/humble/)
-[![Nav2 Controller](https://img.shields.io/badge/Nav2-Controller-orange.svg)](https://navigation.ros.org/)
-[![Ceres Solver](https://img.shields.io/badge/Ceres-Solver-9cf.svg)](http://ceres-solver.org/)
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![arXiv](https://img.shields.io/badge/arXiv-2001.09136-B31B1B.svg)](https://arxiv.org/abs/2607.10374)
+<h1 align="center" style="font-size:2.3em; line-height:1.2; margin-bottom:0.4em;">Navigating the Crowd:<br/>Non-linear MPC with Social Forces Dynamics<br/>for Human-Aware Robot Navigation</h1>
 
-<h1 align="center">SFM-NMPC: Social-Force-Aware Nav2 Controller</h1>
+<p align="center" style="font-size:1.1em; margin-bottom:0.2em;">
+  Stefano Trepella &middot; Andrea Ostuni &middot; Mauro Martini &middot; Pablo Pueyo &middot;
+  Noé Pérez-Higueras &middot; Marcello Chiaberge &middot; Fernando Caballero &middot; Luis Merino
+</p>
+
+<p align="center"><em>IROS 2026</em></p>
+
+<p align="center">
+  <a href="https://arxiv.org/abs/2607.10374">arXiv</a> &middot;
+  <a href="https://arxiv.org/pdf/2607.10374">PDF</a> &middot;
+  <a href="https://github.com/PIC4SeR/sfm-nmpc">Code</a>
+</p>
 
 <p align="center">
   <img src="docs/images/sfm_nmpc_open_crowded_scenario.gif" alt="SFM-NMPC open crowded scenario" width="680" />
 </p>
 
-This is the official repo for the IROS 2026 paper [Navigating the Crowd: Non-linear MPC with Social Forces Dynamics for Human-Aware Robot Navigation](https://arxiv.org/abs/2607.10374).
+## Abstract
+
+Safe and socially compliant navigation remains a fundamental challenge for autonomous robots operating in human-populated environments. Beyond collision avoidance, robots must anticipate human motion and respect personal space to ensure human comfort. Model Predictive Control (MPC) offers a robust alternative to classical and data-driven methods, although its effectiveness strongly depends on accurate human motion prediction and efficient computation. This paper introduces SFM-NMPC, a Social Force Model-based Non-linear Model Predictive Control framework that embeds human motion prediction directly within the optimization loop. By incorporating the Social Force Model into the dynamic model of surrounding agents, the controller jointly predicts the trajectories of humans and robots over the prediction horizon, thereby enabling socially-aware planning. A tailored set of social cost functions guides the optimization toward human-compliant behaviors. Despite the increased model complexity, the proposed formulation runs in real time at 20 Hz. Extensive simulated testing in crowded environments demonstrates that SFM-NMPC outperforms state-of-the-art baselines in social compliance metrics while maintaining efficient and smooth navigation. Visual trajectory analysis and an ablation study further highlight the contribution of the embedded SFM dynamics and social cost terms, confirming the effectiveness of the proposed approach for real-world social navigation.
+
+---
+
+[![ROS 2 Humble](https://img.shields.io/badge/ROS%202-Humble-blue.svg)](https://docs.ros.org/en/humble/)
+[![Nav2 Controller](https://img.shields.io/badge/Nav2-Controller-orange.svg)](https://navigation.ros.org/)
+[![Ceres Solver](https://img.shields.io/badge/Ceres-Solver-9cf.svg)](http://ceres-solver.org/)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![arXiv](https://img.shields.io/badge/arXiv-2607.10374-B31B1B.svg)](https://arxiv.org/abs/2607.10374)
+
 `sfm_nmpc` is a Nav2 controller plugin that optimizes short-horizon velocity commands with Ceres. It combines classical trajectory-tracking critics with Social Force Model (SFM) social costs, so the robot can plan toward goals while respecting nearby people, proxemics, and social flow.
 
 
